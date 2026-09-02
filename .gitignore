@@ -1,0 +1,36 @@
+# ---- Go (backend) ----
+# Binarios compilados
+/backend/bin/
+*.exe
+*.out
+# Dataset MovieLens (grande; se baja aparte)
+/backend/data/*.csv
+/backend/data/ml-latest-small/
+# Cobertura de tests
+*.cover
+coverage.out
+
+# ---- Node / Vue (frontend) ----
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.vite/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ---- Frontend embebido en el backend (se genera en build) ----
+/backend/internal/web/dist/
+
+# ---- ai-tools ----
+/ai-tools/node_modules/
+
+# ---- Entorno / secretos ----
+.env
+.env.local
+*.local
+
+# ---- Editores / OS ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
