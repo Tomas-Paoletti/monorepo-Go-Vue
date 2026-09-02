@@ -50,6 +50,30 @@ type ListMovie struct {
 
 func (ListMovie) TableName() string { return "list_movies" }
 
+// Favorite mapea la tabla `favorites`.
+type Favorite struct {
+	MovieID int       `gorm:"column:movie_id;primaryKey"`
+	AddedAt time.Time `gorm:"column:added_at;not null;default:now()"`
+
+	Movie Movie `gorm:"foreignKey:MovieID"`
+}
+
+func (Favorite) TableName() string { return "favorites" }
+
+// Spin mapea la tabla `spins`: el historial de la ruleta.
+type Spin struct {
+	ID       uuid.UUID  `gorm:"type:uuid;primaryKey;default:gen_random_uuid()"`
+	ListID   *uuid.UUID `gorm:"column:list_id;type:uuid;index:idx_spins_list,priority:1"`
+	MovieID  *int       `gorm:"column:movie_id"`
+	SpunAt   time.Time  `gorm:"column:spun_at;not null;default:now();index:idx_spins_list,priority:2,sort:desc"`
+	Accepted *bool
+
+	List  *List  `gorm:"foreignKey:ListID;constraint:OnDelete:CASCADE"`
+	Movie *Movie `gorm:"foreignKey:MovieID"`
+}
+
+func (Spin) TableName() string { return "spins" }
+
 // Models es el orden en que se migran (respeta las foreign keys: primero las
 // tablas referenciadas, después las que referencian).
 func Models() []any {
@@ -57,5 +81,7 @@ func Models() []any {
 		&Movie{},
 		&List{},
 		&ListMovie{},
+		&Favorite{},
+		&Spin{},
 	}
 }

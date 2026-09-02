@@ -13,8 +13,7 @@ export const TEMPLATES_DIR = join(AI_TOOLS_DIR, "templates", "spec");
 
 /** Variantes disponibles. La primera es el default. */
 export const VARIANTS = [
-  "dialectic",
-  "lean",
+  "project",
   "bdd",
   "contract",
   "test-first",
@@ -23,7 +22,7 @@ export const VARIANTS = [
 
 export type Variant = (typeof VARIANTS)[number];
 
-export const DEFAULT_VARIANT: Variant = "dialectic";
+export const DEFAULT_VARIANT: Variant = "project";
 
 export function isVariant(value: string): value is Variant {
   return (VARIANTS as readonly string[]).includes(value);
@@ -55,6 +54,15 @@ export function findRepoRoot(start: string = AI_TOOLS_DIR): string {
 /** Carpeta donde viven los specs generados. */
 export function specsDir(): string {
   return join(findRepoRoot(), "docs", "specs");
+}
+
+/** Próximo número de spec (padding 3) mirando los `NNN-` ya existentes. */
+export function nextSpecNumber(existing: string[]): string {
+  const max = existing.reduce((acc, name) => {
+    const m = name.match(/^(\d+)-/);
+    return m ? Math.max(acc, parseInt(m[1], 10)) : acc;
+  }, 0);
+  return String(max + 1).padStart(3, "0");
 }
 
 /** Convierte un nombre libre en un slug apto para nombre de archivo. */

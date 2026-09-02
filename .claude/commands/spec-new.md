@@ -10,7 +10,7 @@ Argumentos recibidos: `$ARGUMENTS`
 
 Pasos:
 1. Ejecutá desde `ai-tools/`: `npm run spec -- new $ARGUMENTS`
-   (si el usuario no pasó `--variant`, se usa la variante `dialectic` por default).
+   (si el usuario no pasó `--variant`, se usa la variante `project` por default).
 2. Leé el archivo `docs/specs/<slug>.md` que se acaba de crear y mostráselo al usuario.
 3. Recordale que lo llene y que después puede pedir **"validá el spec &lt;nombre&gt;"** para
    que la skill `spec-validate` contraste supuestos contra el código y pregunte lo que falte.

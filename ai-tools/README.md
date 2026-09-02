@@ -15,7 +15,7 @@ npm install
 Desde `ai-tools/`:
 
 ```bash
-npm run spec -- new checkout                 # crea docs/specs/checkout.md (variante dialectic)
+npm run spec -- new checkout                 # crea docs/specs/NNN-checkout.md (variante project)
 npm run spec -- new pricing --variant=bdd    # otra variante
 npm run spec -- new checkout --force         # sobrescribe si ya existe
 npm run spec -- list                         # lista los specs y su estado
@@ -35,14 +35,17 @@ Los specs se generan en `docs/specs/` (la raíz del repo se detecta subiendo has
 
 | Variante     | Filosofía                                    |
 |--------------|----------------------------------------------|
-| `dialectic`  | Huecos explícitos (default). Lo que sé / no sé / supuestos. |
-| `lean`       | Mínima: qué, por qué, alcance, criterios.    |
+| `project`    | **Default.** La forma real del repo: objetivo, contrato, modelo de datos, criterios, plan de test, notas. |
 | `bdd`        | Given-When-Then para lógica de negocio.      |
 | `contract`   | Contract-first: endpoints, tipos, schema.    |
 | `test-first` | La spec ES la lista de tests.                |
 | `full`       | Ceremonial: contexto, alternativas, riesgos. |
 
 Las plantillas viven en `templates/spec/*.md` y son la fuente de verdad. Editalas ahí.
+
+Los huecos se marcan **inline** con `[NEEDS CLARIFICATION: <pregunta>]` en el lugar exacto;
+`spec-validate` los resuelve antes de codear (no hay sección fija de "dudas").
+`spec new` numera solo: mira los `NNN-` existentes y usa el siguiente.
 
 ## Flujo completo (con Claude)
 

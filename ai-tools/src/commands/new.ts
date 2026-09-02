@@ -1,9 +1,10 @@
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
   DEFAULT_VARIANT,
   VARIANTS,
   isVariant,
+  nextSpecNumber,
   readTemplate,
   slugify,
   specsDir,
@@ -61,14 +62,15 @@ export function runNew(args: string[]): void {
   const dir = specsDir();
   mkdirSync(dir, { recursive: true });
 
-  const file = join(dir, `${slug}.md`);
+  const num = nextSpecNumber(readdirSync(dir));
+  const file = join(dir, `${num}-${slug}.md`);
   if (existsSync(file) && !force) {
     throw new Error(
       `Ya existe ${relative(process.cwd(), file)}. Usá --force para sobrescribir.`,
     );
   }
 
-  const content = readTemplate(variant).replace(/<Feature>/g, name);
+  const content = readTemplate(variant).replace(/<Feature>/g, `${num} — ${name}`);
   writeFileSync(file, content, "utf8");
 
   console.log(`✓ Spec creado (${variant}): ${relative(process.cwd(), file)}`);

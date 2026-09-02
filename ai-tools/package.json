@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Herramientas de IA del monorepo: scaffolding de specs (spec-driven development).",
   "scripts": {
-    "spec": "tsx src/cli.ts"
+    "spec": "tsx src/cli.ts",
+    "test": "tsx --test src/templates.test.ts"
   },
   "devDependencies": {
     "tsx": "^4.19.2",

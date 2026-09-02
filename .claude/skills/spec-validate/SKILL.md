@@ -16,7 +16,7 @@ planificar una feature que ya tiene un archivo en `docs/specs/`.
 ## Protocolo (seguir en orden)
 
 1. **Leé el spec** en `docs/specs/<nombre>.md`. Si no existe, listá `docs/specs/` y pedí el
-   nombre correcto. Identificá su variante mirando las secciones (dialectic, lean, bdd, etc.).
+   nombre correcto. Identificá su variante mirando las secciones (project, bdd, contract, etc.).
 
 2. **Leé el código relevante** del repo antes de opinar. Buscá los módulos, handlers, modelos,
    migraciones y tests que la feature va a tocar. No asumas: verificá firmas, nombres y
@@ -32,10 +32,10 @@ planificar una feature que ya tiene un archivo en `docs/specs/`.
    Si algo tiene 2+ interpretaciones razonables, mostrá las opciones; no elijas por el usuario.
 
 5. **Actualizá el spec** a medida que se resuelve:
-   - Mové ítems de "Dudas abiertas" / "Lo que NO sé" → "Decisiones cerradas" con fecha
-     (`[YYYY-MM-DD] Se decidió X porque Y`).
+   - Reemplazá cada marcador `[NEEDS CLARIFICATION: ...]` por la decisión tomada, en el mismo
+     lugar donde estaba (con fecha si aporta: `[YYYY-MM-DD] Se decidió X porque Y`).
    - Ajustá supuestos que resultaron falsos.
-   - Cuando no queden huecos, cambiá `**Estado:**` a `aprobada`.
+   - Cuando no queden marcadores sin resolver, cambiá `**Estado:**` a `aprobada`.
 
 6. **No propongas plan ni escribas código** hasta que el usuario apruebe explícitamente. El
    entregable de esta skill es un spec cerrado, no una implementación.
